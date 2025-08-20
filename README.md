@@ -26,7 +26,7 @@ A powerful VS Code extension that provides a **zen-focused terminal experience**
 **Zen mode is enabled by default** for maximum focus during AI-assisted coding:
 
 - **🚫 No Borders** - Clean, borderless terminal interface
-- **🧹 Hidden Headers** - No distracting "Terminal 1", "Terminal 2" titles  
+- **🧹 Hidden Headers** - No distracting "Terminal 1", "Terminal 2" titles
 - **❌ No Close Buttons** - Minimal interface without × buttons
 - **📜 Auto-Scroll** - Always stays scrolled to bottom, even when switching focus
 - **🎯 Distraction-Free** - Perfect for Claude Code and AI development workflows
@@ -53,7 +53,7 @@ Customize the extension through VS Code settings (`settings.json`):
 
 | Setting               | Type    | Default                              | Description                                         |
 | --------------------- | ------- | ------------------------------------ | --------------------------------------------------- |
-| `zenMode` 🧘           | boolean | `true`                               | Enable zen mode for distraction-free experience     |
+| `zenMode` 🧘          | boolean | `true`                               | Enable zen mode for distraction-free experience     |
 | `shell`               | string  | ""                                   | Path to shell executable (empty for system default) |
 | `shellArgs`           | array   | []                                   | Arguments to pass to the shell                      |
 | `fontSize`            | number  | 14                                   | Terminal font size                                  |
@@ -175,6 +175,14 @@ Contributions are welcome! Please follow these steps:
 - Add tests to cover new functionality
 - Use [Conventional Commits](https://conventionalcommits.org/) format
 - Ensure CI tests pass on all platforms
+
+### Package
+
+```bash
+npx @vscode/vsce package
+# Or...
+npx @vscode/vsce package --target darwin-arm64
+```
 
 ## 🐛 Troubleshooting
 
