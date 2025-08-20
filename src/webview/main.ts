@@ -584,6 +584,11 @@ class TerminalWebviewManager {
 
     this.setActiveTerminalId(id);
 
+    // Always scroll to bottom when switching terminals for zen focus
+    setTimeout(() => {
+      this.ensureTerminalsScrolledToBottom();
+    }, 100);
+
     // Apply consistent flex styling to all terminals (preserve CSS border classes)
     this.splitManager.getTerminalContainers().forEach((container, _terminalId) => {
       // Update only necessary styles, don't override border styles
@@ -1170,6 +1175,25 @@ class TerminalWebviewManager {
     this.configManager.saveSettings(this.currentSettings);
   }
 
+  /**
+   * Ensure all terminals are scrolled to bottom for zen focus
+   */
+  public ensureTerminalsScrolledToBottom(): void {
+    // Scroll main terminal to bottom
+    if (this.terminal) {
+      this.terminal.scrollToBottom();
+      log('📜 [SCROLL] Main terminal scrolled to bottom');
+    }
+
+    // Scroll all split terminals to bottom
+    this.splitManager.getTerminals().forEach((terminalData, terminalId) => {
+      if (terminalData.terminal) {
+        terminalData.terminal.scrollToBottom();
+        log(`📜 [SCROLL] Split terminal ${terminalId} scrolled to bottom`);
+      }
+    });
+  }
+
   public dispose(): void {
     // PerformanceManager handles its own cleanup
     this.performanceManager.dispose();
@@ -1215,6 +1239,30 @@ document.addEventListener('keydown', (e) => {
   if (e.ctrlKey && e.key === 'Tab') {
     e.preventDefault();
     terminalManager.switchToNextTerminal();
+  }
+});
+
+// Auto-scroll to bottom on focus and visibility changes for zen experience
+window.addEventListener('focus', () => {
+  log('🔍 [FOCUS] Window gained focus - ensuring terminals are scrolled to bottom');
+  terminalManager.ensureTerminalsScrolledToBottom();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    log('👁️ [VISIBILITY] Page became visible - ensuring terminals are scrolled to bottom');
+    terminalManager.ensureTerminalsScrolledToBottom();
+  }
+});
+
+// Also scroll to bottom when terminals receive focus
+document.addEventListener('focusin', (event) => {
+  const target = event.target as HTMLElement;
+  if (target.closest('.xterm-screen') || target.closest('.terminal-container')) {
+    log('🎯 [TERMINAL-FOCUS] Terminal area focused - scrolling to bottom');
+    setTimeout(() => {
+      terminalManager.ensureTerminalsScrolledToBottom();
+    }, 50); // Small delay to ensure focus is complete
   }
 });
 
