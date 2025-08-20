@@ -247,6 +247,11 @@
           "type": "boolean",
           "default": true,
           "description": "Controls whether Alt/Option + click will reposition the prompt cursor to underneath the mouse. This feature may not work reliably for some shells or programs."
+        },
+        "aiTerminal.showTerminalBorders": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show borders around terminal containers. When disabled (default), provides a cleaner minimal appearance."
         }
       }
     }

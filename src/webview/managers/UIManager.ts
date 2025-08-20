@@ -61,27 +61,21 @@ export class UIManager implements IUIManager {
    * Update border for a single terminal container
    */
   private updateSingleTerminalBorder(container: HTMLElement, isActive: boolean): void {
+    // Always set borders to transparent for a minimal appearance
+    container.style.setProperty('border-color', 'transparent', 'important');
+    container.style.setProperty('border-width', '0px', 'important');
+    container.style.setProperty('border-style', 'none', 'important');
+
     if (isActive) {
       container.classList.add('active');
       container.classList.remove('inactive');
-      container.style.setProperty(
-        'border-color',
-        WEBVIEW_THEME_CONSTANTS.ACTIVE_BORDER_COLOR,
-        'important'
-      );
-      container.style.setProperty('border-width', '2px', 'important');
-      container.style.setProperty('border-style', 'solid', 'important');
     } else {
       container.classList.remove('active');
       container.classList.add('inactive');
-      // Keep same border width to prevent layout shift, but make it transparent
-      container.style.setProperty('border-color', 'transparent', 'important');
-      container.style.setProperty('border-width', '2px', 'important');
-      container.style.setProperty('border-style', 'solid', 'important');
     }
 
     log(
-      `🎨 [UI] Updated border for terminal: ${container.dataset.terminalId}, active: ${isActive}, color: ${isActive ? WEBVIEW_THEME_CONSTANTS.ACTIVE_BORDER_COLOR : 'transparent'}`
+      `🎨 [UI] Updated border for terminal: ${container.dataset.terminalId}, active: ${isActive}, minimal mode (no borders)`
     );
   }
 

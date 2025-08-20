@@ -48,7 +48,7 @@ export const WEBVIEW_THEME_CONSTANTS = {
     brightWhite: '#a5a5a5',
   },
   // UI constants
-  ACTIVE_BORDER_COLOR: '#007acc',
+  ACTIVE_BORDER_COLOR: 'transparent',
   INACTIVE_BORDER_COLOR: '#464647',
   SEPARATOR_COLOR: '#464647',
 };
