@@ -61,7 +61,7 @@ export class UIManager implements IUIManager {
    * Update border for a single terminal container
    */
   private updateSingleTerminalBorder(container: HTMLElement, isActive: boolean): void {
-    // Always set borders to transparent for a minimal appearance
+    // Zen mode: clean, distraction-free terminal experience (default)
     container.style.setProperty('border-color', 'transparent', 'important');
     container.style.setProperty('border-width', '0px', 'important');
     container.style.setProperty('border-style', 'none', 'important');
@@ -75,7 +75,7 @@ export class UIManager implements IUIManager {
     }
 
     log(
-      `🎨 [UI] Updated border for terminal: ${container.dataset.terminalId}, active: ${isActive}, minimal mode (no borders)`
+      `🧘 [ZEN] Updated terminal: ${container.dataset.terminalId}, active: ${isActive}, zen mode enabled (distraction-free)`
     );
   }
 

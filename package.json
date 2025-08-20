@@ -1,7 +1,7 @@
 {
   "name": "vscode-ai-terminal",
   "displayName": "AI Terminal",
-  "description": "A powerful VS Code extension that displays a fully-featured AI-enhanced terminal in the sidebar with split support, Alt+Click cursor positioning, and multi-platform compatibility.",
+  "description": "A powerful VS Code extension that displays a zen-focused AI-enhanced terminal in the sidebar with split support, Alt+Click cursor positioning, and distraction-free interface.",
   "version": "0.1.25",
   "publisher": "lekman",
   "engines": {
@@ -248,10 +248,10 @@
           "default": true,
           "description": "Controls whether Alt/Option + click will reposition the prompt cursor to underneath the mouse. This feature may not work reliably for some shells or programs."
         },
-        "aiTerminal.showTerminalBorders": {
+        "aiTerminal.zenMode": {
           "type": "boolean",
-          "default": false,
-          "description": "Show borders around terminal containers. When disabled (default), provides a cleaner minimal appearance."
+          "default": true,
+          "description": "Enable zen mode for a clean, distraction-free terminal experience. Removes borders and visual clutter for maximum focus."
         }
       }
     }
