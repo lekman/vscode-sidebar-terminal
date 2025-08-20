@@ -1,0 +1,41 @@
+# VS Code files
+.vscode/**
+.vscode-test/**
+
+# Source files (only include dist)
+src/**
+**/tsconfig.json
+**/*.ts
+**/*.map
+
+# Development and build
+node_modules/**
+!node_modules/@homebridge/node-pty-prebuilt-multiarch/**
+webpack.config.js
+.gitignore
+.yarnrc
+vsc-extension-quickstart.md
+**/.eslintrc.json
+**/.github/**
+**/test/**
+out/test/**
+**/.nyc_output/**
+**/coverage/**
+**/*.vsix
+**/scripts/**
+.prettierrc.json
+.prettierignore
+renovate.json
+
+# Documentation (keep only essential files)
+docs/**
+DEBUG.md
+CLAUDE.md
+README-EN.md
+create-github-issues.sh
+test-extension.js
+test-terminal-functionality.js
+
+# Development directories
+.claude/**
+.devcontainer/**

@@ -1,0 +1,334 @@
+{
+  "name": "vscode-sidebar-terminal",
+  "displayName": "Sidebar Terminal",
+  "description": "A powerful VS Code extension that displays a fully-featured terminal in the sidebar with split support, Alt+Click cursor positioning, and multi-platform compatibility.",
+  "version": "0.1.25",
+  "publisher": "s-hiraoku",
+  "engines": {
+    "vscode": "^1.74.0",
+    "node": ">=18.0.0"
+  },
+  "categories": [
+    "Other",
+    "Debuggers"
+  ],
+  "keywords": [
+    "terminal",
+    "sidebar",
+    "shell",
+    "console",
+    "command line",
+    "cli",
+    "development",
+    "productivity",
+    "xterm",
+    "pty",
+    "split terminal",
+    "multi-terminal",
+    "alt click",
+    "cursor positioning",
+    "ime support",
+    "japanese input",
+    "cross platform",
+    "node-pty"
+  ],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-hiraoku/vscode-sidebar-terminal"
+  },
+  "bugs": {
+    "url": "https://github.com/s-hiraoku/vscode-sidebar-terminal/issues"
+  },
+  "homepage": "https://github.com/s-hiraoku/vscode-sidebar-terminal#readme",
+  "license": "MIT",
+  "qna": "https://github.com/s-hiraoku/vscode-sidebar-terminal/discussions",
+  "preview": false,
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onView:sidebarTerminal"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sidebarTerminalContainer",
+          "title": "Sidebar Terminal",
+          "icon": "$(terminal)"
+        }
+      ]
+    },
+    "views": {
+      "sidebarTerminalContainer": [
+        {
+          "id": "sidebarTerminal",
+          "name": "Terminal",
+          "type": "webview",
+          "icon": "$(terminal)",
+          "contextualTitle": "Sidebar Terminal"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "sidebarTerminal.killTerminal",
+        "title": "Kill Terminal",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "sidebarTerminal.splitTerminal",
+        "title": "Split Terminal",
+        "icon": "$(split-vertical)"
+      },
+      {
+        "command": "sidebarTerminal.openSettings",
+        "title": "Terminal Settings",
+        "icon": "$(settings-gear)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "sidebarTerminal.splitTerminal",
+          "when": "view == sidebarTerminal",
+          "group": "navigation@1"
+        },
+        {
+          "command": "sidebarTerminal.killTerminal",
+          "when": "view == sidebarTerminal",
+          "group": "navigation@3"
+        },
+        {
+          "command": "sidebarTerminal.openSettings",
+          "when": "view == sidebarTerminal",
+          "group": "navigation@4"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Sidebar Terminal",
+      "properties": {
+        "sidebarTerminal.shell": {
+          "type": "string",
+          "default": "",
+          "description": "Path to shell executable. Leave empty to use system default."
+        },
+        "sidebarTerminal.shellArgs": {
+          "type": "array",
+          "default": [],
+          "description": "Arguments to pass to the shell."
+        },
+        "sidebarTerminal.maxTerminals": {
+          "type": "number",
+          "default": 5,
+          "description": "Maximum number of terminals allowed."
+        },
+        "sidebarTerminal.cursorBlink": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable cursor blinking in terminal."
+        },
+        "sidebarTerminal.theme": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "dark",
+            "light"
+          ],
+          "description": "Terminal theme. Auto follows VS Code theme."
+        },
+        "sidebarTerminal.defaultDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Default directory for new terminals. Leave empty to use workspace root."
+        },
+        "sidebarTerminal.confirmBeforeKill": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show confirmation dialog before closing terminals"
+        },
+        "sidebarTerminal.protectLastTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prevent closing the last terminal"
+        },
+        "sidebarTerminal.minTerminalCount": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Minimum number of terminals to keep open"
+        },
+        "sidebarTerminal.maxSplitTerminals": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Maximum number of terminals to display in split view"
+        },
+        "sidebarTerminal.minTerminalHeight": {
+          "type": "number",
+          "default": 100,
+          "minimum": 50,
+          "maximum": 200,
+          "description": "Minimum height for each terminal in split view (pixels)"
+        },
+        "sidebarTerminal.enableSplitResize": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow resizing split terminals by dragging splitters"
+        },
+        "sidebarTerminal.statusDisplayDuration": {
+          "type": "number",
+          "default": 3000,
+          "minimum": 1000,
+          "maximum": 10000,
+          "description": "Duration to display status messages (milliseconds)"
+        },
+        "sidebarTerminal.autoHideStatus": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically hide status messages after specified duration"
+        },
+        "sidebarTerminal.showStatusOnActivity": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show last status message when user performs actions"
+        },
+        "sidebarTerminal.showWebViewHeader": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show title and command icons in the webview header"
+        },
+        "sidebarTerminal.webViewTitle": {
+          "type": "string",
+          "default": "Terminal",
+          "description": "Title to display in the webview header"
+        },
+        "sidebarTerminal.showSampleIcons": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show sample command icons in webview header (display only)"
+        },
+        "sidebarTerminal.sampleIconOpacity": {
+          "type": "number",
+          "default": 0.4,
+          "minimum": 0.1,
+          "maximum": 1,
+          "description": "Opacity of sample icons (0.1 to 1.0)"
+        },
+        "sidebarTerminal.headerFontSize": {
+          "type": "number",
+          "default": 14,
+          "minimum": 10,
+          "maximum": 20,
+          "description": "Font size for webview header title"
+        },
+        "sidebarTerminal.headerIconSize": {
+          "type": "number",
+          "default": 20,
+          "minimum": 14,
+          "maximum": 28,
+          "description": "Size of terminal icon in webview header"
+        },
+        "sidebarTerminal.sampleIconSize": {
+          "type": "number",
+          "default": 16,
+          "minimum": 12,
+          "maximum": 24,
+          "description": "Size of sample icons in webview header"
+        },
+        "sidebarTerminal.altClickMovesCursor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether Alt/Option + click will reposition the prompt cursor to underneath the mouse. This feature may not work reliably for some shells or programs."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm rebuild && npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "npm run test:unit",
+    "test:coverage": "nyc --reporter=text --reporter=html --reporter=lcov npm run test",
+    "test:watch": "npm run watch-tests & npm run test",
+    "test:unit": "nyc mocha --require ./src/test/shared/setup-exit-handler.js --require out/test/shared/TestSetup.js --timeout 30000 'out/test/unit/**/*.test.js'",
+    "test:integration": "nyc mocha --require ./src/test/shared/setup-exit-handler.js --require out/test/shared/TestSetup.js --timeout 60000 'out/test/integration/**/*.test.js'",
+    "coverage:report": "nyc report --reporter=text --reporter=html",
+    "coverage:check": "nyc check-coverage --lines 70 --functions 70 --branches 60",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "vsce:package": "@vscode/vsce package",
+    "vsce:publish": "@vscode/vsce publish",
+    "vsce:package:win32-x64": "@vscode/vsce package --target win32-x64",
+    "vsce:package:win32-arm64": "@vscode/vsce package --target win32-arm64",
+    "vsce:package:linux-x64": "@vscode/vsce package --target linux-x64",
+    "vsce:package:linux-arm64": "@vscode/vsce package --target linux-arm64",
+    "vsce:package:linux-armhf": "@vscode/vsce package --target linux-armhf",
+    "vsce:package:darwin-x64": "@vscode/vsce package --target darwin-x64",
+    "vsce:package:darwin-arm64": "@vscode/vsce package --target darwin-arm64",
+    "vsce:package:alpine-x64": "@vscode/vsce package --target alpine-x64",
+    "vsce:package:alpine-arm64": "@vscode/vsce package --target alpine-arm64",
+    "create-icons": "node scripts/create-icon.js",
+    "release:patch": "npm version patch && git push origin --follow-tags",
+    "release:minor": "npm version minor && git push origin --follow-tags",
+    "release:major": "npm version major && git push origin --follow-tags"
+  },
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@testing-library/dom": "^10.4.0",
+    "@types/chai": "^5.2.2",
+    "@types/glob": "^9.0.0",
+    "@types/jsdom": "^21.1.7",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "22.x",
+    "@types/sinon": "^17.0.4",
+    "@types/sinon-chai": "^4.0.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^3.6.0",
+    "chai": "^4.3.10",
+    "css-loader": "^7.1.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "glob": "^11.0.0",
+    "jsdom": "^26.1.0",
+    "mocha": "^10.2.0",
+    "nyc": "^17.1.0",
+    "prettier": "^3.1.1",
+    "sinon": "^21.0.0",
+    "sinon-chai": "^3.7.0",
+    "source-map-support": "^0.5.21",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vsce": "^2.15.0",
+    "vscode-test": "^1.6.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^6.0.0"
+  },
+  "dependencies": {
+    "@homebridge/node-pty-prebuilt-multiarch": "^0.12.0",
+    "process": "^0.11.10",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0",
+    "xterm-addon-web-links": "^0.9.0"
+  },
+  "bundledDependencies": [
+    "@homebridge/node-pty-prebuilt-multiarch"
+  ]
+}
