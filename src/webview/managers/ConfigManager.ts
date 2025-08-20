@@ -23,6 +23,7 @@ export class ConfigManager implements IConfigManager {
     bellSound: false,
     altClickMovesCursor: false,
     multiCursorModifier: 'alt',
+    zenMode: true,
   };
 
   // Current font settings cache
@@ -41,6 +42,7 @@ export class ConfigManager implements IConfigManager {
     bellSound: false,
     altClickMovesCursor: false,
     multiCursorModifier: 'alt',
+    zenMode: true,
   };
 
   // Font settings validation

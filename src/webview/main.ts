@@ -264,33 +264,40 @@ class TerminalWebviewManager {
       terminalDiv.className = 'terminal-container';
       terminalDiv.tabIndex = -1; // Make focusable
 
-      // Create terminal header with delete button
+      // Create terminal header with delete button (hidden in zen mode)
       const terminalHeader = document.createElement('div');
       terminalHeader.className = 'terminal-header';
+
+      // Check zen mode and hide header completely
+      const isZenMode = this.currentSettings.zenMode !== false; // Default to true (zen mode enabled)
+      if (isZenMode) {
+        log(`🧘 [ZEN] Terminal header hidden for zen mode: ${id}`);
+      }
       terminalHeader.style.cssText = `
-        display: flex;
+        display: ${isZenMode ? 'none' : 'flex'};
         justify-content: space-between;
         align-items: center;
-        height: 24px;
-        padding: 2px 8px;
+        height: ${isZenMode ? '0px' : '24px'};
+        padding: ${isZenMode ? '0' : '2px 8px'};
         background: var(--vscode-tab-inactiveBackground, #2d2d30);
-        border-bottom: 1px solid var(--vscode-widget-border, #454545);
+        border-bottom: ${isZenMode ? 'none' : '1px solid var(--vscode-widget-border, #454545)'};
         font-size: 11px;
         color: var(--vscode-tab-inactiveForeground, #969696);
         user-select: none;
       `;
 
-      // Terminal title
+      // Terminal title (hidden in zen mode)
       const terminalTitle = document.createElement('span');
-      terminalTitle.textContent = name || `Terminal ${id.slice(-4)}`;
+      terminalTitle.textContent = isZenMode ? '' : name || `Terminal ${id.slice(-4)}`;
       terminalTitle.style.cssText = `
         flex: 1;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        display: ${isZenMode ? 'none' : 'block'};
       `;
 
-      // Delete button
+      // Delete button (hidden in zen mode)
       const deleteButton = document.createElement('button');
       deleteButton.innerHTML = '×';
       deleteButton.title = `Close ${name || 'Terminal'}`;
@@ -305,7 +312,7 @@ class TerminalWebviewManager {
         padding: 0;
         width: 20px;
         height: 20px;
-        display: flex;
+        display: ${isZenMode ? 'none' : 'flex'};
         align-items: center;
         justify-content: center;
         border-radius: 2px;
