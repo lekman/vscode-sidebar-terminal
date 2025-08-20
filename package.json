@@ -2,7 +2,7 @@
   "name": "vscode-ai-terminal",
   "displayName": "AI Terminal",
   "description": "A powerful VS Code extension that displays a zen-focused AI-enhanced terminal in the sidebar with split support, Alt+Click cursor positioning, and distraction-free interface.",
-  "version": "0.1.25",
+  "version": "0.2.0",
   "publisher": "lekman",
   "engines": {
     "vscode": "^1.74.0",

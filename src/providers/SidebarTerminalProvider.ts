@@ -756,6 +756,7 @@ export class SidebarTerminalProvider implements vscode.WebviewViewProvider {
                 position: relative;
                 width: 100%;
                 height: 100%;
+                background-color: var(--vscode-editor-background, #1e1e1e);
                 border: 1px solid transparent !important;
                 transition: border-color 0.2s ease-in-out;
             }
@@ -824,7 +825,7 @@ export class SidebarTerminalProvider implements vscode.WebviewViewProvider {
             /* Terminal container fixes */
             [data-terminal-container] {
                 margin: 0 !important;
-                padding: 2px !important;
+                padding: 2px 2px 2px 15px !important;
                 height: 100% !important;
                 flex: 1 !important;
             }
@@ -875,7 +876,7 @@ export class SidebarTerminalProvider implements vscode.WebviewViewProvider {
                 height: 100vh;
                 color: var(--vscode-foreground, #cccccc);
                 font-family: var(--vscode-font-family, monospace);
-                background: var(--vscode-editor-background, #1e1e1e);
+                background: var(--vscode-editor-background, #3f3f3fff);
             }
         </style>
     </head>
