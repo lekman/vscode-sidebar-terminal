@@ -1,8 +1,8 @@
-# AI Code AI Terminal
+# AI Terminal 🧘
 
-> Cloned from [vscode-ai-terminal](https://github.com/lekman/vscode-ai-terminal) to add individual customizations
+> Enhanced version of vscode-sidebar-terminal with zen mode and AI-focused features
 
-A VS Code extension that displays a terminal in the sidebar.
+A powerful VS Code extension that provides a **zen-focused terminal experience** perfect for AI-assisted development. Features distraction-free interface, intelligent scroll management, and seamless multi-terminal support.
 
 ## 📦 Installation
 
@@ -21,12 +21,23 @@ A VS Code extension that displays a terminal in the sidebar.
 - Integrated with other sidebar views, switchable via tabs
 - Maintains context when switching between views
 
+## 🧘 **Zen Mode Features**
+
+**Zen mode is enabled by default** for maximum focus during AI-assisted coding:
+
+- **🚫 No Borders** - Clean, borderless terminal interface
+- **🧹 Hidden Headers** - No distracting "Terminal 1", "Terminal 2" titles  
+- **❌ No Close Buttons** - Minimal interface without × buttons
+- **📜 Auto-Scroll** - Always stays scrolled to bottom, even when switching focus
+- **🎯 Distraction-Free** - Perfect for Claude Code and AI development workflows
+
 ## ⚙️ Configuration
 
 Customize the extension through VS Code settings (`settings.json`):
 
 ```json
 {
+  "aiTerminal.zenMode": true,
   "aiTerminal.shell": "",
   "aiTerminal.shellArgs": [],
   "aiTerminal.fontSize": 14,
@@ -42,6 +53,7 @@ Customize the extension through VS Code settings (`settings.json`):
 
 | Setting               | Type    | Default                              | Description                                         |
 | --------------------- | ------- | ------------------------------------ | --------------------------------------------------- |
+| `zenMode` 🧘           | boolean | `true`                               | Enable zen mode for distraction-free experience     |
 | `shell`               | string  | ""                                   | Path to shell executable (empty for system default) |
 | `shellArgs`           | array   | []                                   | Arguments to pass to the shell                      |
 | `fontSize`            | number  | 14                                   | Terminal font size                                  |

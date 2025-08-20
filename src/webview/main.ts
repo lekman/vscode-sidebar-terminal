@@ -150,6 +150,9 @@ class TerminalWebviewManager {
 
     // Load settings from VS Code state if available
     this.loadSettings();
+
+    // Apply zen mode styles on initialization
+    this.applyZenModeStyles();
   }
 
   public initializeSimpleTerminal(): void {
@@ -1083,6 +1086,11 @@ class TerminalWebviewManager {
       this.inputManager.updateAltClickSettings(settings);
     }
 
+    // Apply zen mode styling if zenMode setting changed
+    if (settings.zenMode !== undefined) {
+      this.applyZenModeStyles();
+    }
+
     // Also apply to the main terminal if it exists (font settings are handled separately)
     if (this.terminal) {
       const terminal = this.terminal;
@@ -1173,6 +1181,20 @@ class TerminalWebviewManager {
 
   private saveSettings(): void {
     this.configManager.saveSettings(this.currentSettings);
+  }
+
+  /**
+   * Apply zen mode styling to hide VS Code view header
+   */
+  private applyZenModeStyles(): void {
+    const isZenMode = this.currentSettings.zenMode !== false; // Default to true
+    if (isZenMode) {
+      document.body.classList.add('zen-mode');
+      log('🧘 [ZEN] Zen mode styles applied - attempting to hide view header');
+    } else {
+      document.body.classList.remove('zen-mode');
+      log('🎨 [ZEN] Zen mode disabled - restoring normal view');
+    }
   }
 
   /**

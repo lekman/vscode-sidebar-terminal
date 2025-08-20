@@ -644,6 +644,14 @@ export class SidebarTerminalProvider implements vscode.WebviewViewProvider {
                 gap: 0;
             }
             
+            /* Hide VS Code view header in zen mode - attempt to style parent elements */
+            body.zen-mode {
+                /* Try to hide view header by pushing content up */
+                margin-top: -35px;
+                height: calc(100vh + 35px);
+                padding-top: 35px;
+            }
+            
             /* Split layout container */
             .terminal-layout {
                 width: 100%;
