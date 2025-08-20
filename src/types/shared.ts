@@ -163,13 +163,13 @@ export type ExtensionConfig = CompleteExtensionConfig;
  * 設定アクセス用のキー定数
  */
 export const CONFIG_SECTIONS = {
-  SIDEBAR_TERMINAL: 'sidebarTerminal',
+  SIDEBAR_TERMINAL: 'aiTerminal',
   EDITOR: 'editor',
   TERMINAL_INTEGRATED: 'terminal.integrated',
 } as const;
 
 export const CONFIG_KEYS = {
-  // sidebarTerminal セクション
+  // aiTerminal セクション
   THEME: 'theme',
   CURSOR_BLINK: 'cursorBlink',
   MAX_TERMINALS: 'maxTerminals',

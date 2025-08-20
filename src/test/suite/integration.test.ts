@@ -80,7 +80,7 @@ suite('Integration Test Suite', () => {
   });
 
   test('Should handle configuration changes', () => {
-    const config = vscode.workspace.getConfiguration('sidebarTerminal');
+    const config = vscode.workspace.getConfiguration('aiTerminal');
 
     // Test that provider respects configuration
     assert.ok(config.get('fontSize'));
@@ -179,7 +179,7 @@ suite('Integration Test Suite', () => {
       onDidDispose: () => ({ dispose: () => {} }),
       onDidChangeVisibility: () => ({ dispose: () => {} }),
       visible: true,
-      viewType: 'sidebarTerminal',
+      viewType: 'aiTerminal',
       show: () => {},
     } as vscode.WebviewView;
 

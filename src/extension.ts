@@ -16,10 +16,10 @@ export function activate(context: vscode.ExtensionContext): void {
   }
 
   // Get extension version info
-  const extension = vscode.extensions.getExtension('s-hiraoku.vscode-sidebar-terminal');
+  const extension = vscode.extensions.getExtension('lekman.vscode-ai-terminal');
   const version = (extension?.packageJSON as { version?: string })?.version || 'unknown';
 
-  log('Sidebar Terminal extension is now active!');
+  log('AI Terminal extension is now active!');
   log(`Extension version: ${version}`);
   log('Extension path:', context.extensionPath);
 
@@ -48,9 +48,9 @@ export function activate(context: vscode.ExtensionContext): void {
     // Register commands
     registerCommands(context, sidebarProvider);
 
-    log('Sidebar Terminal extension activated successfully');
+    log('AI Terminal extension activated successfully');
   } catch (error) {
-    log('Failed to activate Sidebar Terminal extension:', error);
+    log('Failed to activate AI Terminal extension:', error);
     TerminalErrorHandler.handleWebviewError(error);
   }
 }
@@ -64,21 +64,21 @@ function registerCommands(
 ): void {
   const commands = [
     {
-      command: 'sidebarTerminal.killTerminal',
+      command: 'aiTerminal.killTerminal',
       callback: () => {
         log('🔧 [DEBUG] Command executed: killTerminal');
         provider.killTerminal();
       },
     },
     {
-      command: 'sidebarTerminal.splitTerminal',
+      command: 'aiTerminal.splitTerminal',
       callback: () => {
         log('🔧 [DEBUG] Command executed: splitTerminal');
         provider.splitTerminal();
       },
     },
     {
-      command: 'sidebarTerminal.openSettings',
+      command: 'aiTerminal.openSettings',
       callback: () => {
         log('🔧 [DEBUG] Command executed: openSettings');
         provider.openSettings();
@@ -96,7 +96,7 @@ function registerCommands(
 }
 
 export function deactivate(): void {
-  log('Deactivating Sidebar Terminal extension...');
+  log('Deactivating AI Terminal extension...');
 
   try {
     if (terminalManager) {
@@ -106,7 +106,7 @@ export function deactivate(): void {
 
     sidebarProvider = undefined;
 
-    log('Sidebar Terminal extension deactivated successfully');
+    log('AI Terminal extension deactivated successfully');
   } catch (error) {
     log('Error during deactivation:', error);
   }

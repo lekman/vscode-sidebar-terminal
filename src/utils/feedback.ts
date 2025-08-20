@@ -194,7 +194,7 @@ export class TerminalErrorHandler {
             action: () => {
               void vscode.commands.executeCommand(
                 'workbench.action.openSettings',
-                'sidebarTerminal.shell'
+                'aiTerminal.shell'
               );
             },
           },
@@ -221,7 +221,7 @@ export class TerminalErrorHandler {
           {
             title: 'Retry',
             action: () => {
-              void vscode.commands.executeCommand('sidebarTerminal.createTerminal');
+              void vscode.commands.executeCommand('aiTerminal.createTerminal');
             },
           },
         ],
@@ -237,7 +237,7 @@ export class TerminalErrorHandler {
           {
             title: 'Kill Active Terminal',
             action: () => {
-              void vscode.commands.executeCommand('sidebarTerminal.killTerminal');
+              void vscode.commands.executeCommand('aiTerminal.killTerminal');
             },
           },
         ],
@@ -251,7 +251,7 @@ export class TerminalErrorHandler {
         {
           title: 'Create Terminal',
           action: () => {
-            void vscode.commands.executeCommand('sidebarTerminal.createTerminal');
+            void vscode.commands.executeCommand('aiTerminal.createTerminal');
           },
         },
       ],

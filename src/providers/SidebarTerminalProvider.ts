@@ -9,7 +9,7 @@ import { showError, showSuccess, TerminalErrorHandler } from '../utils/feedback'
 import { provider as log } from '../utils/logger';
 
 export class SidebarTerminalProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = 'sidebarTerminal';
+  public static readonly viewType = 'aiTerminal';
 
   private _view?: vscode.WebviewView;
 
@@ -910,7 +910,7 @@ export class SidebarTerminalProvider implements vscode.WebviewViewProvider {
 
   private async updateSettings(settings: PartialTerminalSettings): Promise<void> {
     try {
-      const config = vscode.workspace.getConfiguration('sidebarTerminal');
+      const config = vscode.workspace.getConfiguration('aiTerminal');
       // Note: ConfigManager handles reading, but writing must still use VS Code API
 
       // Update VS Code settings (font settings are managed by VS Code directly)

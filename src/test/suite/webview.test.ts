@@ -69,7 +69,7 @@ suite('Webview Test Suite', () => {
       onDidDispose: () => ({ dispose: () => {} }),
       onDidChangeVisibility: () => ({ dispose: () => {} }),
       visible: true,
-      viewType: 'sidebarTerminal',
+      viewType: 'aiTerminal',
       show: () => {},
     } as vscode.WebviewView;
 
@@ -111,7 +111,7 @@ suite('Webview Test Suite', () => {
       onDidDispose: () => ({ dispose: () => {} }),
       onDidChangeVisibility: () => ({ dispose: () => {} }),
       visible: true,
-      viewType: 'sidebarTerminal',
+      viewType: 'aiTerminal',
       show: () => {},
     } as vscode.WebviewView;
 
@@ -254,7 +254,7 @@ suite('Webview Test Suite', () => {
       onDidDispose: () => ({ dispose: () => {} }),
       onDidChangeVisibility: () => ({ dispose: () => {} }),
       visible: true,
-      viewType: 'sidebarTerminal',
+      viewType: 'aiTerminal',
       show: () => {},
     } as vscode.WebviewView;
 

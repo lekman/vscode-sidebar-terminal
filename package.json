@@ -1,9 +1,9 @@
 {
-  "name": "vscode-sidebar-terminal",
-  "displayName": "Sidebar Terminal",
-  "description": "A powerful VS Code extension that displays a fully-featured terminal in the sidebar with split support, Alt+Click cursor positioning, and multi-platform compatibility.",
+  "name": "vscode-ai-terminal",
+  "displayName": "AI Terminal",
+  "description": "A powerful VS Code extension that displays a fully-featured AI-enhanced terminal in the sidebar with split support, Alt+Click cursor positioning, and multi-platform compatibility.",
   "version": "0.1.25",
-  "publisher": "s-hiraoku",
+  "publisher": "lekman",
   "engines": {
     "vscode": "^1.74.0",
     "node": ">=18.0.0"
@@ -39,53 +39,53 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/s-hiraoku/vscode-sidebar-terminal"
+    "url": "https://github.com/lekman/vscode-ai-terminal"
   },
   "bugs": {
-    "url": "https://github.com/s-hiraoku/vscode-sidebar-terminal/issues"
+    "url": "https://github.com/lekman/vscode-ai-terminal/issues"
   },
-  "homepage": "https://github.com/s-hiraoku/vscode-sidebar-terminal#readme",
+  "homepage": "https://github.com/lekman/vscode-ai-terminal#readme",
   "license": "MIT",
-  "qna": "https://github.com/s-hiraoku/vscode-sidebar-terminal/discussions",
+  "qna": "https://github.com/lekman/vscode-ai-terminal/discussions",
   "preview": false,
   "main": "./dist/extension.js",
   "activationEvents": [
-    "onView:sidebarTerminal"
+    "onView:aiTerminal"
   ],
   "contributes": {
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "sidebarTerminalContainer",
-          "title": "Sidebar Terminal",
+          "id": "aiTerminalContainer",
+          "title": "AI Terminal",
           "icon": "$(terminal)"
         }
       ]
     },
     "views": {
-      "sidebarTerminalContainer": [
+      "aiTerminalContainer": [
         {
-          "id": "sidebarTerminal",
-          "name": "Terminal",
+          "id": "aiTerminal",
+          "name": "AI Terminal",
           "type": "webview",
           "icon": "$(terminal)",
-          "contextualTitle": "Sidebar Terminal"
+          "contextualTitle": "AI Terminal"
         }
       ]
     },
     "commands": [
       {
-        "command": "sidebarTerminal.killTerminal",
+        "command": "aiTerminal.killTerminal",
         "title": "Kill Terminal",
         "icon": "$(trash)"
       },
       {
-        "command": "sidebarTerminal.splitTerminal",
+        "command": "aiTerminal.splitTerminal",
         "title": "Split Terminal",
         "icon": "$(split-vertical)"
       },
       {
-        "command": "sidebarTerminal.openSettings",
+        "command": "aiTerminal.openSettings",
         "title": "Terminal Settings",
         "icon": "$(settings-gear)"
       }
@@ -93,46 +93,46 @@
     "menus": {
       "view/title": [
         {
-          "command": "sidebarTerminal.splitTerminal",
-          "when": "view == sidebarTerminal",
+          "command": "aiTerminal.splitTerminal",
+          "when": "view == aiTerminal",
           "group": "navigation@1"
         },
         {
-          "command": "sidebarTerminal.killTerminal",
-          "when": "view == sidebarTerminal",
+          "command": "aiTerminal.killTerminal",
+          "when": "view == aiTerminal",
           "group": "navigation@3"
         },
         {
-          "command": "sidebarTerminal.openSettings",
-          "when": "view == sidebarTerminal",
+          "command": "aiTerminal.openSettings",
+          "when": "view == aiTerminal",
           "group": "navigation@4"
         }
       ]
     },
     "configuration": {
-      "title": "Sidebar Terminal",
+      "title": "AI Terminal",
       "properties": {
-        "sidebarTerminal.shell": {
+        "aiTerminal.shell": {
           "type": "string",
           "default": "",
           "description": "Path to shell executable. Leave empty to use system default."
         },
-        "sidebarTerminal.shellArgs": {
+        "aiTerminal.shellArgs": {
           "type": "array",
           "default": [],
           "description": "Arguments to pass to the shell."
         },
-        "sidebarTerminal.maxTerminals": {
+        "aiTerminal.maxTerminals": {
           "type": "number",
           "default": 5,
           "description": "Maximum number of terminals allowed."
         },
-        "sidebarTerminal.cursorBlink": {
+        "aiTerminal.cursorBlink": {
           "type": "boolean",
           "default": true,
           "description": "Enable cursor blinking in terminal."
         },
-        "sidebarTerminal.theme": {
+        "aiTerminal.theme": {
           "type": "string",
           "default": "auto",
           "enum": [
@@ -142,108 +142,108 @@
           ],
           "description": "Terminal theme. Auto follows VS Code theme."
         },
-        "sidebarTerminal.defaultDirectory": {
+        "aiTerminal.defaultDirectory": {
           "type": "string",
           "default": "",
           "description": "Default directory for new terminals. Leave empty to use workspace root."
         },
-        "sidebarTerminal.confirmBeforeKill": {
+        "aiTerminal.confirmBeforeKill": {
           "type": "boolean",
           "default": false,
           "description": "Show confirmation dialog before closing terminals"
         },
-        "sidebarTerminal.protectLastTerminal": {
+        "aiTerminal.protectLastTerminal": {
           "type": "boolean",
           "default": true,
           "description": "Prevent closing the last terminal"
         },
-        "sidebarTerminal.minTerminalCount": {
+        "aiTerminal.minTerminalCount": {
           "type": "number",
           "default": 1,
           "minimum": 0,
           "maximum": 5,
           "description": "Minimum number of terminals to keep open"
         },
-        "sidebarTerminal.maxSplitTerminals": {
+        "aiTerminal.maxSplitTerminals": {
           "type": "number",
           "default": 5,
           "minimum": 1,
           "maximum": 5,
           "description": "Maximum number of terminals to display in split view"
         },
-        "sidebarTerminal.minTerminalHeight": {
+        "aiTerminal.minTerminalHeight": {
           "type": "number",
           "default": 100,
           "minimum": 50,
           "maximum": 200,
           "description": "Minimum height for each terminal in split view (pixels)"
         },
-        "sidebarTerminal.enableSplitResize": {
+        "aiTerminal.enableSplitResize": {
           "type": "boolean",
           "default": true,
           "description": "Allow resizing split terminals by dragging splitters"
         },
-        "sidebarTerminal.statusDisplayDuration": {
+        "aiTerminal.statusDisplayDuration": {
           "type": "number",
           "default": 3000,
           "minimum": 1000,
           "maximum": 10000,
           "description": "Duration to display status messages (milliseconds)"
         },
-        "sidebarTerminal.autoHideStatus": {
+        "aiTerminal.autoHideStatus": {
           "type": "boolean",
           "default": true,
           "description": "Automatically hide status messages after specified duration"
         },
-        "sidebarTerminal.showStatusOnActivity": {
+        "aiTerminal.showStatusOnActivity": {
           "type": "boolean",
           "default": true,
           "description": "Show last status message when user performs actions"
         },
-        "sidebarTerminal.showWebViewHeader": {
+        "aiTerminal.showWebViewHeader": {
           "type": "boolean",
           "default": true,
           "description": "Show title and command icons in the webview header"
         },
-        "sidebarTerminal.webViewTitle": {
+        "aiTerminal.webViewTitle": {
           "type": "string",
           "default": "Terminal",
           "description": "Title to display in the webview header"
         },
-        "sidebarTerminal.showSampleIcons": {
+        "aiTerminal.showSampleIcons": {
           "type": "boolean",
           "default": true,
           "description": "Show sample command icons in webview header (display only)"
         },
-        "sidebarTerminal.sampleIconOpacity": {
+        "aiTerminal.sampleIconOpacity": {
           "type": "number",
           "default": 0.4,
           "minimum": 0.1,
           "maximum": 1,
           "description": "Opacity of sample icons (0.1 to 1.0)"
         },
-        "sidebarTerminal.headerFontSize": {
+        "aiTerminal.headerFontSize": {
           "type": "number",
           "default": 14,
           "minimum": 10,
           "maximum": 20,
           "description": "Font size for webview header title"
         },
-        "sidebarTerminal.headerIconSize": {
+        "aiTerminal.headerIconSize": {
           "type": "number",
           "default": 20,
           "minimum": 14,
           "maximum": 28,
           "description": "Size of terminal icon in webview header"
         },
-        "sidebarTerminal.sampleIconSize": {
+        "aiTerminal.sampleIconSize": {
           "type": "number",
           "default": 16,
           "minimum": 12,
           "maximum": 24,
           "description": "Size of sample icons in webview header"
         },
-        "sidebarTerminal.altClickMovesCursor": {
+        "aiTerminal.altClickMovesCursor": {
           "type": "boolean",
           "default": true,
           "description": "Controls whether Alt/Option + click will reposition the prompt cursor to underneath the mouse. This feature may not work reliably for some shells or programs."

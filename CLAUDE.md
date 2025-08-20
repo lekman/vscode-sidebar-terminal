@@ -143,7 +143,7 @@ The extension provides extensive configuration options in `package.json`:
 - Status management: duration, auto-hide, activity triggers
 - UI customization: icon opacity, header title, icon sizes
 
-Configuration values are accessed via `vscode.workspace.getConfiguration('sidebarTerminal')` and can be changed at runtime.
+Configuration values are accessed via `vscode.workspace.getConfiguration('aiTerminal')` and can be changed at runtime.
 
 ### Common Development Patterns
 
